@@ -114,18 +114,15 @@ nav.scrolled{
 }
 
 .hero-num{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(9rem,18vw,18rem);
-  font-weight:300;
-  line-height:0.85;
-  color:transparent;
-  -webkit-text-stroke:1.5px rgba(212,98,26,0.45);
   position:absolute;
   right:-2%;
   top:50%;
   transform:translateY(-50%);
   pointer-events:none;
   user-select:none;
+  width:clamp(22rem,42vw,50rem);
+  height:auto;
+  overflow:visible;
 }
 
 .hero-tag{
@@ -601,6 +598,16 @@ footer{
   color:rgba(255,255,255,0.5);
   letter-spacing:0.05em;
 }
+.footer-link{
+  color:rgba(255,255,255,0.5);
+  text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,0.2);
+  transition:color 0.2s,border-color 0.2s;
+}
+.footer-link:hover{
+  color:var(--o2);
+  border-color:var(--o2);
+}
 
 /* ── OPPORTUNITY ── */
 .opp-section{border-bottom:1px solid rgba(0,0,0,0.07);}
@@ -762,7 +769,18 @@ footer{
   </div>
 
   <div class="hero-main">
-    <div class="hero-num" aria-hidden="true">30M</div>
+    <svg class="hero-num" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 185" overflow="visible">
+      <text x="480" y="165"
+        text-anchor="end"
+        font-family="Cormorant Garamond, serif"
+        font-size="175"
+        font-weight="300"
+        fill="none"
+        stroke="#D4621A"
+        stroke-opacity="0.45"
+        stroke-width="1.5"
+        letter-spacing="-4">30M</text>
+    </svg>
     <div class="hero-tag">
       <span class="hero-tag-dot"></span>
       Korean market entry — beauty & skincare
@@ -784,7 +802,7 @@ footer{
       <div class="hbi-label">Contract to live on Coupang</div>
     </div>
     <div class="hero-bottom-item">
-      <div class="hbi-num">200B₩</div>
+      <div class="hbi-num">$150M</div>
       <div class="hbi-label">Cumulative GMV launched</div>
     </div>
   </div>
@@ -1065,7 +1083,7 @@ footer{
 <!-- FOOTER -->
 <footer>
   <span class="footer-logo">Kontactic</span>
-  <span class="footer-note">Seoul, Korea · kontactic.com · 3mjhkim@kontactic.com</span>
+  <span class="footer-note">Seoul, Korea · <a href="https://kontactic.com" target="_blank" rel="noopener" class="footer-link">kontactic.com</a> · <a href="mailto:3mjhkim@kontactic.com" class="footer-link">3mjhkim@kontactic.com</a></span>
 </footer>
 
 <script>
