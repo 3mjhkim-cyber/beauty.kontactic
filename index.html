@@ -275,9 +275,9 @@ nav.scrolled{
 
 .proof-stat{
   font-family:'Cormorant Garamond',serif;
-  font-size:3.5rem;font-weight:300;
+  font-size:4.8rem;font-weight:300;
   line-height:1;
-  margin-bottom:0.4rem;
+  margin-bottom:0.5rem;
   color:var(--ink);
 }
 .proof-cell.dark .proof-stat{color:var(--o2);}
@@ -348,10 +348,11 @@ nav.scrolled{
 
 .step-content{}
 .step-title{
-  font-size:1rem;font-weight:700;
-  letter-spacing:0.04em;
+  font-size:1.3rem;font-weight:700;
+  letter-spacing:0.02em;
   text-transform:uppercase;
-  margin-bottom:0.5rem;
+  margin-bottom:0.65rem;
+  line-height:1.2;
 }
 .step-desc{
   font-size:0.95rem;
@@ -566,6 +567,120 @@ footer{
   letter-spacing:0.05em;
 }
 
+/* ── OPPORTUNITY ── */
+.opp-section{border-bottom:1px solid rgba(0,0,0,0.07);}
+
+.opp-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  margin-top:4rem;
+}
+
+.opp-item{
+  padding:3rem 3.5rem 3rem 0;
+}
+.opp-item:not(:first-child){
+  border-left:1px solid rgba(0,0,0,0.08);
+  padding-left:3.5rem;
+}
+
+.opp-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(5rem,9vw,9rem);
+  font-weight:300;
+  line-height:0.95;
+  color:var(--ink);
+  margin-bottom:1.5rem;
+  letter-spacing:-0.04em;
+}
+.opp-unit{
+  font-size:0.36em;
+  color:var(--o);
+  font-weight:400;
+  letter-spacing:0.02em;
+  vertical-align:super;
+  margin-left:0.08em;
+}
+
+.opp-bar{
+  width:2.5rem;
+  height:2px;
+  background:var(--o);
+  margin-bottom:1.1rem;
+}
+
+.opp-label{
+  font-size:0.72rem;
+  font-weight:700;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--o);
+  margin-bottom:0.7rem;
+}
+
+.opp-text{
+  font-size:0.95rem;
+  line-height:1.8;
+  color:rgba(15,12,9,0.6);
+  max-width:320px;
+}
+
+/* ── BRAND QUOTE ── */
+.brand-quote-section{
+  background:var(--ink);
+  padding:10rem 5%;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.bq-deco{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(12rem,22vw,22rem);
+  font-weight:300;
+  line-height:1;
+  color:rgba(212,98,26,0.1);
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  user-select:none;
+  white-space:nowrap;
+}
+
+.bq-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.4rem,4.8vw,4.5rem);
+  font-weight:300;
+  font-style:italic;
+  color:var(--cream);
+  line-height:1.2;
+  max-width:900px;
+  margin:0 auto 3rem;
+  position:relative;
+  letter-spacing:-0.025em;
+}
+.bq-text em{
+  color:var(--o2);
+  font-style:normal;
+}
+
+.bq-rule{
+  width:3rem;
+  height:1px;
+  background:rgba(212,98,26,0.5);
+  margin:0 auto 1.5rem;
+}
+
+.bq-attr{
+  font-size:0.74rem;
+  font-weight:700;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:rgba(250,246,240,0.3);
+  position:relative;
+}
+
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   .hero-num{display:none;}
@@ -579,6 +694,11 @@ footer{
   .creds-strip{grid-template-columns:1fr 1fr;}
   .contact-grid{grid-template-columns:1fr;gap:3rem;}
   .s{padding:4.5rem 5%;}
+  .opp-grid{grid-template-columns:1fr;}
+  .opp-item:not(:first-child){border-left:none;border-top:1px solid rgba(0,0,0,0.08);padding-left:0;padding-top:2.5rem;}
+  .opp-item{padding-right:0;}
+  .brand-quote-section{padding:6rem 5%;}
+  .bq-deco{display:none;}
 }
 </style>
 </head>
@@ -661,6 +781,31 @@ footer{
   </div>
 </div>
 
+<!-- OPPORTUNITY -->
+<section class="s opp-section">
+  <div class="s-label">The Korean opportunity</div>
+  <div class="opp-grid">
+    <div class="opp-item">
+      <div class="opp-num">₩12<span class="opp-unit">T</span></div>
+      <div class="opp-bar"></div>
+      <div class="opp-label">Market size</div>
+      <p class="opp-text">Korean beauty & personal care — one of the world's most trend-driven, highest-spending consumer markets.</p>
+    </div>
+    <div class="opp-item">
+      <div class="opp-num">90<span class="opp-unit">%</span></div>
+      <div class="opp-bar"></div>
+      <div class="opp-label">Next-morning delivery</div>
+      <p class="opp-text">Coupang reaches 90% of Korean households by next morning. The infrastructure is already world-class — you just need to be on it.</p>
+    </div>
+    <div class="opp-item">
+      <div class="opp-num">3<span class="opp-unit">wks</span></div>
+      <div class="opp-bar"></div>
+      <div class="opp-label">Contract to live</div>
+      <p class="opp-text">From contract signing to your first official Coupang listing. We've run this exact playbook over 1,000 times.</p>
+    </div>
+  </div>
+</section>
+
 <!-- STATEMENT -->
 <section class="s statement">
   <div class="s-label">The problem with waiting</div>
@@ -675,10 +820,10 @@ footer{
     </div>
     <div class="statement-right">
       <p class="statement-pull">
-        Grey-market resellers are already on Coupang, capturing margin on your products — without your knowledge, your quality control, or a single cent going back to you.
+        Grey-market resellers are already on Coupang — capturing your margin, without your knowledge, your quality control, or a single cent going back to you.
       </p>
       <p class="statement-body-text">
-        That grey-market activity isn't a threat. It's a validated demand signal. Korean consumers have already decided they want your brand — they're just paying a premium to a middleman because there's no official option. We fix that. In three weeks.
+        That's not a threat. It's a demand signal.<br>We fix it in three weeks.
       </p>
     </div>
   </div>
@@ -686,7 +831,7 @@ footer{
   <div class="proof-grid">
     <div class="proof-cell">
       <p class="proof-big">
-        Coupang delivers to <em>90%</em> of Korea by next morning. Your brand deserves to be on it.
+        Korea ranks <em>#1</em> globally in per-capita beauty spend. The consumer is ready.
       </p>
     </div>
     <div class="proof-cell dark">
@@ -790,6 +935,17 @@ footer{
       </ul>
     </div>
   </div>
+</section>
+
+<!-- BRAND QUOTE -->
+<section class="brand-quote-section">
+  <div class="bq-deco" aria-hidden="true">KR</div>
+  <blockquote class="bq-text">
+    The grey market isn't your problem.<br>
+    It's your <em>proof of concept.</em>
+  </blockquote>
+  <div class="bq-rule"></div>
+  <div class="bq-attr">Kontactic — Seoul, Korea</div>
 </section>
 
 <!-- CREDS STRIP -->
