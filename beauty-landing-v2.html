@@ -266,10 +266,11 @@ nav.scrolled{
 .proof-cell{
   background:var(--cream);
   padding:2.5rem;
+  color:var(--ink);
 }
 
 .proof-cell.dark{background:var(--ink2);color:var(--cream);}
-.proof-cell.accent{background:var(--o);color:var(--cream);}
+.proof-cell.accent{background:var(--o);color:#fff;}
 .proof-cell.span2{grid-column:span 2;}
 
 .proof-stat{
@@ -277,17 +278,21 @@ nav.scrolled{
   font-size:3.5rem;font-weight:300;
   line-height:1;
   margin-bottom:0.4rem;
+  color:var(--ink);
 }
 .proof-cell.dark .proof-stat{color:var(--o2);}
 .proof-cell.accent .proof-stat{color:#fff;}
 
 .proof-text{
-  font-size:0.88rem;font-weight:500;
+  font-size:0.9rem;font-weight:500;
   letter-spacing:0.05em;
-  opacity:0.78;
+  opacity:1;
   text-transform:uppercase;
-  line-height:1.5;
+  line-height:1.6;
+  color:rgba(15,12,9,0.6);
 }
+.proof-cell.dark .proof-text{color:rgba(250,246,240,0.75);}
+.proof-cell.accent .proof-text{color:rgba(255,255,255,0.88);}
 
 .proof-big{
   font-family:'Cormorant Garamond',serif;
@@ -690,7 +695,7 @@ footer{
     </div>
     <div class="proof-cell accent">
       <div class="proof-stat">11.7%</div>
-      <p class="proof-text" style="color:rgba(255,255,255,0.7);">YoY growth in cross-border beauty imports to Korea</p>
+      <p class="proof-text">YoY growth in cross-border beauty imports to Korea</p>
     </div>
     <div class="proof-cell dark span2">
       <div class="proof-stat">No entity.</div>
