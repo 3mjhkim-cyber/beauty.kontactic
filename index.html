@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontactic — Your Beauty Brand in Korea</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+:root{
+  --o:#D4621A;
+  --o2:#F0874A;
+  --cream:#FAF6F0;
+  --ink:#0F0C09;
+  --ink2:#2A2218;
+  --dust:#C4B8A8;
+  --rule:rgba(212,98,26,0.18);
+}
+
+html{scroll-behavior:smooth;}
+
+body{
+  font-family:'Syne',sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  overflow-x:hidden;
+}
+
+/* ── CURSOR ── */
+.cursor{
+  width:8px;height:8px;
+  background:var(--o);
+  border-radius:50%;
+  position:fixed;top:0;left:0;
+  pointer-events:none;
+  z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+  mix-blend-mode:multiply;
+}
+.cursor.big{width:40px;height:40px;background:rgba(212,98,26,0.15);}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.4rem 5%;
+  mix-blend-mode:normal;
+}
+
+.logo-mark{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem;font-weight:400;
+  letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--ink);text-decoration:none;
+}
+
+.nav-right{display:flex;align-items:center;gap:2rem;}
+.nav-link{font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:var(--ink);opacity:0.45;transition:opacity 0.2s;}
+.nav-link:hover{opacity:1;}
+
+.nav-btn{
+  font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  padding:0.65rem 1.6rem;
+  border:1.5px solid var(--ink);
+  background:transparent;color:var(--ink);
+  text-decoration:none;
+  transition:background 0.25s,color 0.25s;
+}
+.nav-btn:hover{background:var(--ink);color:var(--cream);}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  padding:0 5%;
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-top{
+  padding-top:130px;
+  display:flex;
+  justify-content:flex-end;
+  align-items:flex-start;
+}
+
+.hero-top-note{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:0.95rem;
+  color:var(--dust);
+  text-align:right;
+  max-width:200px;
+  line-height:1.5;
+}
+
+.hero-main{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:2rem 0 4rem;
+  position:relative;
+}
+
+.hero-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(9rem,18vw,18rem);
+  font-weight:300;
+  line-height:0.85;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(212,98,26,0.15);
+  position:absolute;
+  right:-2%;
+  top:50%;
+  transform:translateY(-50%);
+  pointer-events:none;
+  user-select:none;
+}
+
+.hero-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:0.68rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--o);
+  margin-bottom:2rem;
+}
+.hero-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--o);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+
+.hero-h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3.5rem,7.5vw,7.5rem);
+  font-weight:300;
+  line-height:0.95;
+  letter-spacing:-0.03em;
+  max-width:820px;
+}
+
+.hero-h1 strong{font-weight:600;}
+.hero-h1 em{font-style:italic;color:var(--o);}
+
+.hero-bottom{
+  padding-bottom:4rem;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:0;
+  border-top:1px solid rgba(0,0,0,0.1);
+  padding-top:2rem;
+}
+
+.hero-bottom-item{
+  padding:1.5rem 2rem 1.5rem 0;
+}
+.hero-bottom-item+.hero-bottom-item{
+  border-left:1px solid rgba(0,0,0,0.08);
+  padding-left:2rem;
+}
+
+.hbi-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.5rem;font-weight:300;
+  color:var(--o);
+  line-height:1;
+  margin-bottom:0.3rem;
+}
+.hbi-label{font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--dust);}
+
+/* ── MARQUEE ── */
+.marquee-wrap{
+  background:var(--ink);
+  overflow:hidden;
+  padding:1.1rem 0;
+  border-top:2px solid var(--o);
+}
+.marquee-track{
+  display:flex;
+  gap:0;
+  animation:marquee 22s linear infinite;
+  width:max-content;
+}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%)}}
+
+.marquee-item{
+  white-space:nowrap;
+  font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(255,255,255,0.3);
+  padding:0 3rem;
+}
+.marquee-item.accent{color:var(--o2);}
+
+/* ── SECTION BASE ── */
+.s{padding:7rem 5%;}
+.s-label{
+  font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--o);
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:3rem;
+}
+.s-label::after{content:'';flex:1;height:1px;background:var(--rule);}
+
+/* ── STATEMENT ── */
+.statement{background:var(--ink);color:var(--cream);}
+.statement .s-label{color:var(--o2);}
+.statement .s-label::after{background:rgba(240,135,74,0.2);}
+
+.statement-body{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6rem;
+  align-items:end;
+}
+
+.statement-left h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,5vw,5rem);
+  font-weight:300;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+}
+
+.statement-left h2 em{font-style:italic;color:var(--o2);}
+
+.statement-right{
+  padding-bottom:0.5rem;
+}
+
+.statement-pull{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:1.3rem;
+  color:rgba(250,246,240,0.5);
+  line-height:1.7;
+  border-left:2px solid var(--o);
+  padding-left:1.5rem;
+  margin-bottom:2rem;
+}
+
+.statement-body-text{
+  font-size:0.88rem;
+  line-height:1.85;
+  color:rgba(250,246,240,0.6);
+  font-weight:400;
+}
+
+/* ── PROOF GRID ── */
+.proof-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  grid-template-rows:auto auto;
+  gap:1px;
+  background:rgba(0,0,0,0.07);
+  border:1px solid rgba(0,0,0,0.07);
+  margin-top:3rem;
+}
+
+.proof-cell{
+  background:var(--cream);
+  padding:2.5rem;
+}
+
+.proof-cell.dark{background:var(--ink2);color:var(--cream);}
+.proof-cell.accent{background:var(--o);color:var(--cream);}
+.proof-cell.span2{grid-column:span 2;}
+
+.proof-stat{
+  font-family:'Cormorant Garamond',serif;
+  font-size:3.5rem;font-weight:300;
+  line-height:1;
+  margin-bottom:0.4rem;
+}
+.proof-cell.dark .proof-stat{color:var(--o2);}
+.proof-cell.accent .proof-stat{color:#fff;}
+
+.proof-text{
+  font-size:0.78rem;font-weight:500;
+  letter-spacing:0.05em;
+  opacity:0.55;
+  text-transform:uppercase;
+  line-height:1.5;
+}
+
+.proof-big{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.8rem,3vw,2.8rem);
+  font-weight:300;
+  line-height:1.3;
+  letter-spacing:-0.01em;
+}
+.proof-big em{font-style:italic;color:var(--o);}
+
+/* ── HOW ── */
+.how-wrap{
+  display:grid;
+  grid-template-columns:300px 1fr;
+  gap:6rem;
+}
+
+.how-left h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.5rem,4vw,3.8rem);
+  font-weight:300;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  margin-bottom:1.5rem;
+}
+.how-left h2 em{font-style:italic;color:var(--o);}
+
+.how-left p{
+  font-size:0.82rem;
+  line-height:1.9;
+  color:rgba(15,12,9,0.5);
+}
+
+.how-steps{display:flex;flex-direction:column;gap:0;}
+
+.how-step{
+  display:grid;
+  grid-template-columns:60px 1fr;
+  gap:2rem;
+  padding:2rem 0;
+  border-bottom:1px solid rgba(0,0,0,0.07);
+  transition:background 0.2s;
+}
+.how-step:first-child{border-top:1px solid rgba(0,0,0,0.07);}
+
+.step-n{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.8rem;font-weight:300;
+  color:rgba(212,98,26,0.2);
+  line-height:1;
+  padding-top:3px;
+}
+
+.step-content{}
+.step-title{
+  font-size:0.9rem;font-weight:700;
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+  margin-bottom:0.5rem;
+}
+.step-desc{
+  font-size:0.82rem;
+  line-height:1.8;
+  color:rgba(15,12,9,0.5);
+}
+
+/* ── SERVICES ── */
+.services-bg{background:#F2EDE4;}
+
+.services-inner{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px;
+  background:rgba(0,0,0,0.06);
+  margin-top:3rem;
+}
+
+.svc{
+  background:#F2EDE4;
+  padding:3rem;
+  position:relative;
+  transition:background 0.3s;
+}
+.svc:hover{background:var(--cream);}
+
+.svc.hero-svc{background:var(--ink);color:var(--cream);}
+.svc.hero-svc:hover{background:var(--ink2);}
+
+.svc-eyebrow{
+  font-size:0.62rem;font-weight:700;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--o);
+  margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:8px;
+}
+.svc.hero-svc .svc-eyebrow{color:var(--o2);}
+
+.svc-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:3rem;font-weight:300;
+  letter-spacing:-0.02em;
+  line-height:1;
+  margin-bottom:0.25rem;
+}
+
+.svc-sub{
+  font-size:0.78rem;
+  opacity:0.45;
+  margin-bottom:2rem;
+  font-style:italic;
+  font-family:'Cormorant Garamond',serif;
+}
+
+.svc-price-block{margin-bottom:2rem;}
+.svc-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.2rem;font-weight:300;
+  color:var(--o);
+  line-height:1;
+}
+.svc.hero-svc .svc-price{color:var(--o2);}
+.svc-price-note{font-size:0.72rem;opacity:0.4;margin-top:0.3rem;}
+
+.svc-list{list-style:none;display:flex;flex-direction:column;gap:0.65rem;}
+.svc-list li{
+  font-size:0.8rem;
+  line-height:1.6;
+  display:flex;align-items:flex-start;gap:10px;
+  opacity:0.7;
+}
+.svc-list li::before{
+  content:'';
+  display:block;
+  width:16px;height:1px;
+  background:var(--o);
+  margin-top:10px;
+  flex-shrink:0;
+}
+.svc.hero-svc .svc-list li::before{background:var(--o2);}
+
+/* ── CREDS ── */
+.creds-strip{
+  background:var(--o);
+  color:var(--cream);
+  padding:4rem 5%;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background-color:var(--o);
+}
+
+.cred-cell{
+  padding:2rem;
+  background:var(--o);
+}
+.cred-cell:hover{background:var(--ink2);}
+
+.cred-n{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.5rem;font-weight:300;
+  line-height:1;
+  margin-bottom:0.5rem;
+  color:#fff;
+}
+.cred-t{
+  font-size:0.72rem;font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;
+  color:rgba(255,255,255,0.55);
+  line-height:1.5;
+}
+
+/* ── CONTACT ── */
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8rem;
+  align-items:start;
+}
+
+.contact-left h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,5vw,5rem);
+  font-weight:300;
+  line-height:1.05;
+  letter-spacing:-0.03em;
+  margin-bottom:1.5rem;
+}
+.contact-left h2 em{font-style:italic;color:var(--o);}
+
+.contact-left p{
+  font-size:0.85rem;
+  line-height:1.9;
+  color:rgba(15,12,9,0.5);
+  max-width:340px;
+}
+
+.form-field{margin-bottom:1.5rem;}
+
+.form-field label{
+  display:block;
+  font-size:0.62rem;font-weight:700;
+  letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--dust);
+  margin-bottom:0.5rem;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea{
+  width:100%;
+  background:transparent;
+  border:none;
+  border-bottom:1px solid rgba(0,0,0,0.15);
+  padding:0.6rem 0;
+  font-family:'Syne',sans-serif;
+  font-size:0.9rem;
+  color:var(--ink);
+  outline:none;
+  transition:border-color 0.2s;
+  -webkit-appearance:none;
+  border-radius:0;
+}
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus{border-color:var(--o);}
+.form-field textarea{resize:none;height:100px;}
+
+.form-row2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+
+.form-submit{
+  margin-top:2rem;
+  display:inline-flex;align-items:center;gap:16px;
+  background:none;border:none;cursor:pointer;
+  font-family:'Syne',sans-serif;
+  font-size:0.85rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--ink);
+  padding:0;
+  transition:gap 0.3s;
+}
+.form-submit:hover{gap:24px;}
+
+.submit-arrow{
+  width:48px;height:48px;
+  border:1.5px solid var(--ink);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transition:background 0.25s,border-color 0.25s;
+}
+.form-submit:hover .submit-arrow{background:var(--o);border-color:var(--o);}
+.submit-arrow svg{transition:stroke 0.25s;}
+.form-submit:hover .submit-arrow svg path{stroke:#fff;}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--ink);
+  padding:3rem 5%;
+  display:flex;align-items:center;justify-content:space-between;
+}
+
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;font-weight:400;
+  letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(255,255,255,0.25);
+}
+
+.footer-note{
+  font-size:0.7rem;
+  color:rgba(255,255,255,0.2);
+  letter-spacing:0.05em;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero-num{display:none;}
+  .hero-bottom{grid-template-columns:1fr;}
+  .hero-bottom-item+.hero-bottom-item{border-left:none;border-top:1px solid rgba(0,0,0,0.08);padding-left:0;padding-top:1.5rem;}
+  .statement-body{grid-template-columns:1fr;gap:2.5rem;}
+  .proof-grid{grid-template-columns:1fr 1fr;}
+  .proof-cell.span2{grid-column:span 2;}
+  .how-wrap{grid-template-columns:1fr;gap:3rem;}
+  .services-inner{grid-template-columns:1fr;}
+  .creds-strip{grid-template-columns:1fr 1fr;}
+  .contact-grid{grid-template-columns:1fr;gap:3rem;}
+  .s{padding:4.5rem 5%;}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo-mark">Kontactic</a>
+  <div class="nav-right">
+    <a href="#how" class="nav-link">How it works</a>
+    <a href="#services" class="nav-link">Services</a>
+    <a href="#contact" class="nav-btn">Let's talk</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-top">
+    <p class="hero-top-note">Seoul-based.<br>Korea-obsessed.<br>Built for brands like yours.</p>
+  </div>
+
+  <div class="hero-main">
+    <div class="hero-num" aria-hidden="true">30M</div>
+    <div class="hero-tag">
+      <span class="hero-tag-dot"></span>
+      Korean market entry — beauty & skincare
+    </div>
+    <h1 class="hero-h1">
+      Korean consumers<br>
+      are <em>already buying</em><br>
+      <strong>your brand.</strong>
+    </h1>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="hero-bottom-item">
+      <div class="hbi-num">30M+</div>
+      <div class="hbi-label">Active Coupang buyers</div>
+    </div>
+    <div class="hero-bottom-item">
+      <div class="hbi-num">3 wks</div>
+      <div class="hbi-label">Contract to live on Coupang</div>
+    </div>
+    <div class="hero-bottom-item">
+      <div class="hbi-num">200B₩</div>
+      <div class="hbi-label">Cumulative GMV launched</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Official Coupang SPN Partner</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">Korea Customs Commendation 2021</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">KOTRA Certified</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">1,000+ Brands Launched</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">Importer & Seller of Record</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">Zero Korean Entity Required</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">Official Coupang SPN Partner</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">Korea Customs Commendation 2021</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">KOTRA Certified</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">1,000+ Brands Launched</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">Importer & Seller of Record</span>
+    <span class="marquee-item accent">✦</span>
+    <span class="marquee-item">Zero Korean Entity Required</span>
+    <span class="marquee-item accent">✦</span>
+  </div>
+</div>
+
+<!-- STATEMENT -->
+<section class="s statement">
+  <div class="s-label">The problem with waiting</div>
+  <div class="statement-body">
+    <div class="statement-left">
+      <h2>
+        Someone else is<br>
+        selling your brand<br>
+        in Korea right now.<br>
+        <em>Just not you.</em>
+      </h2>
+    </div>
+    <div class="statement-right">
+      <p class="statement-pull">
+        Grey-market resellers are already on Coupang, capturing margin on your products — without your knowledge, your quality control, or a single cent going back to you.
+      </p>
+      <p class="statement-body-text">
+        That grey-market activity isn't a threat. It's a validated demand signal. Korean consumers have already decided they want your brand — they're just paying a premium to a middleman because there's no official option. We fix that. In three weeks.
+      </p>
+    </div>
+  </div>
+
+  <div class="proof-grid">
+    <div class="proof-cell">
+      <p class="proof-big">
+        Coupang delivers to <em>90%</em> of Korea by next morning. Your brand deserves to be on it.
+      </p>
+    </div>
+    <div class="proof-cell dark">
+      <div class="proof-stat">$30B</div>
+      <p class="proof-text">Coupang annual revenue — Korea's dominant marketplace</p>
+    </div>
+    <div class="proof-cell accent">
+      <div class="proof-stat">11.7%</div>
+      <p class="proof-text" style="color:rgba(255,255,255,0.7);">YoY growth in cross-border beauty imports to Korea</p>
+    </div>
+    <div class="proof-cell dark span2">
+      <div class="proof-stat">No entity.</div>
+      <p class="proof-text">No Korean company required. We are your importer and seller of record — you just ship inventory.</p>
+    </div>
+    <div class="proof-cell">
+      <div class="proof-stat">15+</div>
+      <p class="proof-text">Years in Korean e-commerce. We've seen every edge case.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="s" id="how">
+  <div class="s-label">How it works</div>
+  <div class="how-wrap">
+    <div class="how-left">
+      <h2>Live on Coupang in <em>three weeks.</em></h2>
+      <p>Your only job is to ship inventory to Korea. We handle everything from customs clearance to customer service — in Korean.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-n">01</div>
+        <div class="step-content">
+          <div class="step-title">Discovery call</div>
+          <p class="step-desc">We share the Korean demand data we've already found for your brand, walk through compliance for your category, and map out a 90-day launch plan. No commitment needed.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="step-n">02</div>
+        <div class="step-content">
+          <div class="step-title">Compliance & onboarding</div>
+          <p class="step-desc">We review your ingredients against Korean regulations, handle customs documentation, and set up your brand under our Korean entity as importer and seller of record.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="step-n">03</div>
+        <div class="step-content">
+          <div class="step-title">Coupang goes live</div>
+          <p class="step-desc">Localized Korean product pages, Rocket Growth fulfillment (same/next-day delivery), Korean customer service — all live. You ship us inventory once, we handle the rest.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="step-n">04</div>
+        <div class="step-content">
+          <div class="step-title">Monthly settlement in USD</div>
+          <p class="step-desc">Net proceeds wired to your account every month. No tax filing burden, no Korean banking headache. Optional: we add PPC, influencer campaigns, and growth strategy as you scale.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="s services-bg" id="services">
+  <div class="s-label">Services</div>
+  <div class="services-inner">
+    <div class="svc hero-svc">
+      <div class="svc-eyebrow">✦ Start here</div>
+      <div class="svc-name">Spark</div>
+      <div class="svc-sub">Importer & Seller of Record</div>
+      <div class="svc-price-block">
+        <div class="svc-price">$300 / mo</div>
+        <div class="svc-price-note">+ 3% gross sales · min. $500/month · no lock-in</div>
+      </div>
+      <ul class="svc-list">
+        <li>Kontactic acts as your Korean Importer & Seller of Record</li>
+        <li>Customs clearance & import authority under our entity</li>
+        <li>Coupang listing, Rocket Growth fulfillment setup</li>
+        <li>Korean-language Tier-1 customer service</li>
+        <li>VAT filing — entirely our problem, not yours</li>
+        <li>Monthly USD settlement & remittance</li>
+        <li>Live in 2–4 weeks from contract signing</li>
+      </ul>
+    </div>
+    <div class="svc">
+      <div class="svc-eyebrow">Scale into this</div>
+      <div class="svc-name">Blaze</div>
+      <div class="svc-sub">Full managed service — your Korean entity</div>
+      <div class="svc-price-block">
+        <div class="svc-price">$5,000 / mo</div>
+        <div class="svc-price-note">+ 10% gross sales · $3,000 one-time entity setup</div>
+      </div>
+      <ul class="svc-list">
+        <li>Your own Korean 유한회사 — you own it entirely</li>
+        <li>All business & import licenses under your brand name</li>
+        <li>Localized PDPs, storefront management included</li>
+        <li>Coupang PPC management included</li>
+        <li>Influencer campaigns, review strategy, conversion optimization</li>
+        <li>Expansion roadmap: Naver, Kakao, D2C store</li>
+        <li>Seamless transition from Spark — zero downtime</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CREDS STRIP -->
+<div class="creds-strip">
+  <div class="cred-cell">
+    <div class="cred-n">SPN</div>
+    <div class="cred-t">Official Coupang partner — direct line to Coupang HQ</div>
+  </div>
+  <div class="cred-cell">
+    <div class="cred-n">2021</div>
+    <div class="cred-t">Commendation from the Commissioner of Korea Customs Service</div>
+  </div>
+  <div class="cred-cell">
+    <div class="cred-n">KOTRA</div>
+    <div class="cred-t">Government-certified export support agency</div>
+  </div>
+  <div class="cred-cell">
+    <div class="cred-n">1,000+</div>
+    <div class="cred-t">Brands launched — across beauty, F&B, health, supplements</div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="s" id="contact">
+  <div class="s-label">Get started</div>
+  <div class="contact-grid">
+    <div class="contact-left">
+      <h2>
+        We already have<br>
+        <em>your demand data.</em><br>
+        Want to see it?
+      </h2>
+      <p>Send us your brand name and we'll come back within one business day with what Korean consumers are already saying about you — and what the Coupang opportunity looks like. No commitment needed.</p>
+    </div>
+    <div>
+      <form action="https://formspree.io/f/xreogyrq" method="POST">
+        <div class="form-row2">
+          <div class="form-field">
+            <label>First name</label>
+            <input type="text" name="first_name" placeholder="Jane" required>
+          </div>
+          <div class="form-field">
+            <label>Last name</label>
+            <input type="text" name="last_name" placeholder="Smith" required>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Work email</label>
+          <input type="email" name="email" placeholder="jane@yourbrand.com" required>
+        </div>
+        <div class="form-field">
+          <label>Brand name</label>
+          <input type="text" name="brand" placeholder="Your brand" required>
+        </div>
+        <div class="form-field">
+          <label>Website</label>
+          <input type="url" name="website" placeholder="https://yourbrand.com">
+        </div>
+        <div class="form-field">
+          <label>Category</label>
+          <select name="category">
+            <option value="">Select</option>
+            <option>Skincare (face)</option>
+            <option>Body care</option>
+            <option>Hair care</option>
+            <option>Sun care</option>
+            <option>Color cosmetics</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Anything else</label>
+          <textarea name="message" placeholder="Questions, context, or anything useful..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">
+          Send message
+          <span class="submit-arrow">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Kontactic</span>
+  <span class="footer-note">Seoul, Korea · kontactic.com · 3mjhkim@kontactic.com</span>
+</footer>
+
+<script>
+const cursor = document.getElementById('cursor');
+let mx=0,my=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cursor.style.left=mx+'px';
+  cursor.style.top=my+'px';
+});
+document.querySelectorAll('a,button,.svc,.proof-cell,.how-step').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cursor.classList.add('big'));
+  el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
+});
+</script>
+</body>
+</html>
