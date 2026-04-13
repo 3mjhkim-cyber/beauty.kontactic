@@ -47,6 +47,14 @@ nav{
   display:flex;align-items:center;justify-content:space-between;
   padding:1.4rem 5%;
   mix-blend-mode:normal;
+  transition:background 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
+}
+nav.scrolled{
+  background:rgba(250,246,240,0.92);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  box-shadow:0 1px 0 rgba(212,98,26,0.1);
+  padding:0.95rem 5%;
 }
 
 .logo-mark{
@@ -882,6 +890,11 @@ document.querySelectorAll('a,button,.svc,.proof-cell,.how-step').forEach(el=>{
   el.addEventListener('mouseenter',()=>cursor.classList.add('big'));
   el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
 });
+
+const nav = document.querySelector('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+},{passive:true});
 </script>
 </body>
 </html>
